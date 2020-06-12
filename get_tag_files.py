@@ -10,8 +10,6 @@ import click
 GLOB = '*.md.json'
 
 
-@click.command()
-@click.argument('root_dir', required=True)
 def from_root(root_dir: str) -> List[str]:
     """Return all tag filepaths under root_dir.
 
@@ -28,10 +26,17 @@ def from_root(root_dir: str) -> List[str]:
     ]
     """
     root = Path(root_dir)
-    print(list(map(str, root.rglob(GLOB))))
+    return list(map(str, root.rglob(GLOB)))
+
+
+@click.command()
+@click.argument('root_dir', required=True)
+def _tag_files(root_dir: str) -> None:
+    tag_files = from_root(root_dir)
+    print(tag_files)
 
 
 if __name__ == '__main__':
     # This parameter is handled by click
     # pylint: disable=no-value-for-parameter
-    from_root()
+    _tag_files()

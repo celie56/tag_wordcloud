@@ -7,8 +7,6 @@ import matplotlib.pyplot as plt
 import click
 
 
-@click.command()
-@click.argument('tags', required=True)
 def generate_graphic_from_tags(tags: str) -> None:
     """Given a space seperated string of tags, show a wordcloud."""
     cloud = WordCloud(background_color="white").generate(tags)
@@ -17,7 +15,13 @@ def generate_graphic_from_tags(tags: str) -> None:
     plt.show()
 
 
+@click.command()
+@click.argument('tags', required=True)
+def _graphic_cli(tags: str) -> None:
+    generate_graphic_from_tags(tags)
+
+
 if __name__ == '__main__':
     # This parameter is handled by click
     # pylint: disable=no-value-for-parameter
-    generate_graphic_from_tags()
+    _graphic_cli()
