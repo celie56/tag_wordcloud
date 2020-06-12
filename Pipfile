@@ -6,6 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+click = "*"
+yapf = "*"
+pylint = "*"
+pytest = "*"
+wordcloud = "*"
 
 [requires]
 python_version = "3.8"
